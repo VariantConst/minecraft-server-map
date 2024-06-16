@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-color: rgb(98, 102, 120);
+  color: white;
+  overflow: hidden;
+}
+
 .leaflet-container {
   height: 100%;
   width: 100%;

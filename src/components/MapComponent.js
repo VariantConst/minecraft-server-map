@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import mapData from '../data.json';
+import React, { useEffect, useRef, useState } from "react";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import mapData from "../data.json";
 
 const MapComponent = () => {
   const mapRef = useRef(null);
@@ -11,7 +11,22 @@ const MapComponent = () => {
   const [markerToCenter, setMarkerToCenter] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
 
+  const adjustMapSize = () => {
+    if (!isHalfWidth) {
+      const height = window.innerHeight * 0.85;
+      const width = height * (16 / 9);
+      mapRef.current.style.height = `${height}px`;
+      mapRef.current.style.width = `${width}px`;
+    } else {
+      mapRef.current.style.height = "100%";
+      mapRef.current.style.width = "100%";
+    }
+  };
+
   useEffect(() => {
+    window.addEventListener("resize", adjustMapSize);
+    adjustMapSize();
+
     if (!mapRef.current) return;
 
     // 清理之前的地图实例
@@ -29,7 +44,7 @@ const MapComponent = () => {
       },
       unproject: function (point) {
         return new L.LatLng(point.y, point.x);
-      }
+      },
     });
 
     const bounds = [
@@ -38,7 +53,7 @@ const MapComponent = () => {
     ];
 
     // 计算合适的最小缩放级别以确保地图能够撑满页面
-    const padding = 32; // Tailwind CSS 'p-8' 等于 2rem，每 rem 通常为 16px
+    const padding = 64; // Tailwind CSS 'p-8' 等于 2rem，每 rem 通常为 16px
     const mapWidth = mapRef.current.clientWidth + padding * 2;
     const mapHeight = mapRef.current.clientHeight + padding * 2;
     const imageWidth = image.coordinates.maxX - image.coordinates.minX;
@@ -57,35 +72,44 @@ const MapComponent = () => {
       center: [0, 0], // 设置初始中心点
       maxBounds: bounds, // 设置最大边界
       maxBoundsViscosity: 1.0, // 防止拖动超出边界
-      attributionControl: false // 禁用右下角的 Leaflet 标志
+      attributionControl: false, // 禁用右下角的 Leaflet 标志
     });
 
     const imageLayer = L.imageOverlay(image.src, bounds).addTo(mapInstance);
     mapInstance.fitBounds(bounds);
 
-    markers.forEach(marker => {
+    markers.forEach((marker) => {
       const markerIcon = L.divIcon({
-        className: 'custom-icon',
-        html: `<div class="bg-red-500 rounded-full w-4 h-4"></div>`,
+        className: "custom-icon",
+        html: `<div class="bg-cyan-600 border-2 border-cyan-400 rounded-full w-8 h-8"></div>`,
       });
 
-      const markerInstance = L.marker([marker.coordinates.y, marker.coordinates.x], { icon: markerIcon }).addTo(mapInstance);
-      markerInstance.bindPopup(`<strong>${marker.title}</strong><br>${marker.description}`);
+      const markerInstance = L.marker(
+        [marker.coordinates.y, marker.coordinates.x],
+        { icon: markerIcon }
+      ).addTo(mapInstance);
+      markerInstance.bindPopup(
+        `<strong>${marker.title}</strong><br>${marker.description}`
+      );
 
-      markerInstance.on('click', () => {
+      markerInstance.on("click", () => {
         setIsHalfWidth(true);
         setMarkerToCenter([marker.coordinates.y, marker.coordinates.x]);
         setSelectedMarker(marker);
       });
     });
 
-    mapInstance.on('mousemove', function (e) {
+    mapInstance.on("mousemove", function (e) {
       const x = e.latlng.lng.toFixed(0);
       const y = e.latlng.lat.toFixed(0);
       setMousePosition({ x, y });
     });
 
     setMap(mapInstance);
+
+    return () => {
+      window.removeEventListener("resize", adjustMapSize);
+    };
   }, [mapRef]);
 
   useEffect(() => {
@@ -95,6 +119,7 @@ const MapComponent = () => {
         map.panTo(markerToCenter, { animate: true });
       }
     }
+    adjustMapSize();
   }, [isHalfWidth, map, markerToCenter]);
 
   const handleRestore = () => {
@@ -104,9 +129,15 @@ const MapComponent = () => {
   };
 
   return (
-    <div className="flex h-screen p-8">
-      <div className={`relative ${isHalfWidth ? 'w-2/3' : 'w-full'} rounded-lg border-2 border-gray-300 shadow-lg`}>
-        <div ref={mapRef} className="h-full w-full rounded-lg" />
+    <div className="flex h-[85vh] p-16 mt-10 items-center justify-center">
+      <div
+        className={`${isHalfWidth ? "w-2/3" : "w-full mx-auto"}`}
+        style={{ height: "85vh" }}
+      >
+        <div
+          ref={mapRef}
+          className="inset-0 rounded-2xl mx-auto border border-gray-700"
+        />
         <div className="absolute bottom-0 left-0 m-4 p-2 bg-white bg-opacity-80 text-black rounded-lg shadow-lg z-[1000]">
           <div className="font-mono text-xs">
             <div>X: {mousePosition.x}</div>
@@ -115,24 +146,44 @@ const MapComponent = () => {
         </div>
       </div>
       {isHalfWidth && selectedMarker && (
-        <div className="w-1/3 p-4 overflow-auto m-4">
-          
+        <div className="w-1/3 h-[85vh] ml-8 p-6 overflow-auto border border-gray-700 shadow-lg rounded-lg bg-slate-800/90">
           <div>
-            <div className='flex flex-row justify-between'>
-              <h2 className="text-2xl font-bold mb-4">{selectedMarker.title}</h2>
+            <div className="flex flex-row justify-between items-center border-b border-gray-600 pb-4 mb-4">
+              <h2 className="text-2xl font-bold text-gray-100">
+                {selectedMarker.title}
+              </h2>
               <button
                 onClick={handleRestore}
-                className="mb-4 p-2 bg-blue-500 text-white rounded-lg shadow-lg z-[1000]"
+                className="p-2 bg-gray-400 text-black rounded-lg shadow-xl transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 z-[1000]"
               >
-                恢复
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
               </button>
             </div>
-            <p className="mb-4">{selectedMarker.description}</p>
+            <p className="mb-4 text-gray-300">{selectedMarker.description}</p>
             <div className="flex flex-col gap-12">
               {selectedMarker.gallery.map((image, index) => (
-                <div key={index} className="flex flex-col items-center">
-                  <img src={image.src} alt={image.caption} className="w-full h-auto rounded-lg shadow-lg" />
-                  <span className="mt-2 text-center">{image.caption}</span>
+                <div key={index} className="flex flex-col items-center p-6">
+                  <img
+                    src={image.src}
+                    alt={image.caption}
+                    className="w-full h-auto rounded-lg shadow-xl transition-transform transform hover:scale-105 duration-300"
+                  />
+                  <span className="mt-2 text-center text-gray-400">
+                    {image.caption}
+                  </span>
                 </div>
               ))}
             </div>

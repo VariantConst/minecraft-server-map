@@ -1,12 +1,24 @@
-import React from 'react';
-import MapComponent from './components/MapComponent';
-import './index.css';
+// src/App.js
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import WelcomeComponent from "./components/WelcomeComponent";
+import MapComponent from "./components/MapComponent";
+import Header from "./components/Header";
+import "./index.css";
 
 function App() {
   return (
-    <div className="App">
-      <MapComponent />
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <div>
+          <Routes>
+            <Route path="/" element={<WelcomeComponent />} />
+            <Route path="/map" element={<MapComponent />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 

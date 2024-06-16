@@ -1,5 +1,9 @@
-html, body, #root, .app {
+html,
+body,
+#root,
+.app {
   height: 100%;
+  width: 100%;
   margin: 0;
   font-family: Arial, sans-serif;
 }
@@ -42,7 +46,7 @@ html, body, #root, .app {
   padding: 20px;
   overflow-y: auto;
   background-color: white;
-  box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   transition: width 0.3s;
 }
 
