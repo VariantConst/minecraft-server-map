@@ -1,0 +1,52 @@
+{
+    "image": {
+      "src": "/images/fullmap.png",
+      "coordinates": {
+        "minX": -3940,
+        "minY": -2130,
+        "maxX": 3850,
+        "maxY": 2152
+      }
+    },
+    "markers": [
+      {
+        "id": 1,
+        "title": "Marker 1",
+        "description": "Description for Marker 1",
+        "gallery": [
+          { "src": "/images/spawn-1.png", "caption": "Caption 1" },
+          { "src": "/images/spawn-2.png", "caption": "Caption 2" }
+        ],
+        "coordinates": {
+          "x": 2000,
+          "y": 1000
+        }
+      },
+      {
+        "id": 2,
+        "title": "Marker 2",
+        "description": "Description for Marker 2",
+        "gallery": [
+          { "src": "/images/蘑菇岛-1.png", "caption": "Caption 3" },
+          { "src": "/images/spawn-2.png", "caption": "Caption 4" }
+        ],
+        "coordinates": {
+          "x": 2500,
+          "y": 1600
+        }
+      },
+      {
+        "id": 3,
+        "title": "Marker 3",
+        "description": "Description for Marker 3",
+        "gallery": [
+          { "src": "/images/蘑菇岛-1.png", "caption": "Caption 5" },
+          { "src": "/images/spawn-2.png", "caption": "Caption 6" }
+        ],
+        "coordinates": {
+          "x": -200,
+          "y": 200
+        }
+      }
+    ]
+  }

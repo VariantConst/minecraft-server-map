@@ -1,0 +1,67 @@
+html, body, #root, .app {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.map-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  transition: width 0.3s;
+}
+
+.map-container.half-width {
+  width: 50%;
+}
+
+.marker {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.hover-info {
+  position: absolute;
+  background: white;
+  padding: 5px;
+  border: 1px solid black;
+  z-index: 1000;
+}
+
+.info-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: white;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+  transition: width 0.3s;
+}
+
+.marker-info h2 {
+  margin-top: 0;
+}
+
+.gallery img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
