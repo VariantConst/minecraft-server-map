@@ -14,9 +14,13 @@ const MapComponent = () => {
   const adjustMapSize = () => {
     if (!isHalfWidth) {
       const height = window.innerHeight * 0.85;
-      const width = height * (16 / 9);
+      let width = height * (16 / 9);
+      if (width > window.innerWidth) {
+        width = window.innerWidth;
+      }
       mapRef.current.style.height = `${height}px`;
       mapRef.current.style.width = `${width}px`;
+      console.log(`height: ${height}px, width: ${width}px`);
     } else {
       mapRef.current.style.height = "100%";
       mapRef.current.style.width = "100%";
