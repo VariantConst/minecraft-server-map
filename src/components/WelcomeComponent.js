@@ -21,9 +21,18 @@ function WelcomeComponent() {
         <p className="mb-3 text-xl">
           欢迎来到 NormHub，一个 1.21 原版生存服务器。
         </p>
-        <Link to="/map" className="text-blue-500 font-bold">
-          导航地图
-        </Link>
+        <p>
+          <Link to="/map" className="text-blue-500 font-bold">
+            导航地图（仅 PC）
+          </Link>{" "}
+          |{" "}
+          <Link
+            to="https://map.variantconst.com"
+            className="text-blue-500 font-bold"
+          >
+            在线地图
+          </Link>
+        </p>
       </div>
     </div>
   );

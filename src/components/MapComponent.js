@@ -75,7 +75,6 @@ const MapComponent = () => {
       attributionControl: false, // 禁用右下角的 Leaflet 标志
     });
 
-    const imageLayer = L.imageOverlay(image.src, bounds).addTo(mapInstance);
     mapInstance.fitBounds(bounds);
 
     markers.forEach((marker) => {
@@ -173,9 +172,9 @@ const MapComponent = () => {
               </button>
             </div>
             <p className="mb-4 text-gray-300">{selectedMarker.description}</p>
-            <div className="flex flex-col gap-12">
+            <div className="flex flex-col gap-4">
               {selectedMarker.gallery.map((image, index) => (
-                <div key={index} className="flex flex-col items-center p-6">
+                <div key={index} className="flex flex-col items-center p-2">
                   <img
                     src={image.src}
                     alt={image.caption}

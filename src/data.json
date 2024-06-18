@@ -1,11 +1,11 @@
 {
   "image": {
-    "src": "/images/fullmap.png",
+    "src": "/images/主世界地图.png",
     "coordinates": {
-      "minX": -3940,
-      "minY": -2130,
-      "maxX": 3850,
-      "maxY": 2152
+      "minX": -1664,
+      "minY": -783,
+      "maxX": 1496,
+      "maxY": 947
     }
   },
   "markers": [
@@ -13,8 +13,11 @@
       "id": 1,
       "title": "出生点",
       "description": "梦开始的地方",
-      "icon": "home",
-      "gallery": [{ "src": "/images/出生点-1.png", "caption": "开服纪念" }],
+      "gallery": [
+        { "src": "/images/出生点-1.jpg", "caption": "出生点景观" },
+        { "src": "/images/出生点-2.jpg", "caption": "传送门小岛" },
+        { "src": "/images/出生点-3.jpg", "caption": "传送门大桥" }
+      ],
       "coordinates": {
         "x": -200,
         "y": 200
@@ -22,24 +25,22 @@
     },
     {
       "id": 2,
-      "title": "Marker 2",
-      "description": "Description for Marker 2",
-      "icon": "machine",
-      "gallery": [{ "src": "/images/蘑菇岛-1.png", "caption": "Caption 3" }],
+      "title": "刷铁机",
+      "description": "刷铁机",
+      "gallery": [{ "src": "/images/蘑菇岛-1.webp", "caption": "刷铁机" }],
       "coordinates": {
-        "x": 2500,
-        "y": 1600
+        "x": 928,
+        "y": 820
       }
     },
     {
       "id": 3,
-      "title": "Marker 3",
-      "description": "Description for Marker 3",
-      "icon": "portal",
-      "gallery": [{ "src": "/images/蘑菇岛-1.png", "caption": "Caption 5" }],
+      "title": "蘑菇岛",
+      "description": "小小的蘑菇岛",
+      "gallery": [{ "src": "/images/蘑菇岛-1.webp", "caption": "🐮" }],
       "coordinates": {
-        "x": -2000,
-        "y": 500
+        "x": -1179,
+        "y": -655
       }
     }
   ]

@@ -13,7 +13,7 @@ function Header() {
               to="/"
               className="relative transition-all duration-300 ease-in-out transform hover:-translate-y-2"
             >
-              Home
+              首页
               <span className="absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 transition-transform duration-300 ease-in-out hover:scale-x-105"></span>
             </Link>
           </li>
@@ -22,7 +22,7 @@ function Header() {
               to="/map"
               className="relative transition-all duration-300 ease-in-out transform hover:-translate-y-2"
             >
-              Map
+              导航
               <span className="absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 transition-transform duration-300 ease-in-out hover:scale-x-105"></span>
             </Link>
           </li>
