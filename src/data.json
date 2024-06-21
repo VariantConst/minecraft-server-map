@@ -1,11 +1,11 @@
 {
   "image": {
-    "src": "/images/主世界地图.png",
+    "src": "/images/output.webp",
     "coordinates": {
-      "minX": -1664,
-      "minY": -783,
-      "maxX": 1496,
-      "maxY": 947
+      "minX": -4884,
+      "minY": -4878,
+      "maxX": 4884,
+      "maxY": 4884
     }
   },
   "markers": [
@@ -41,6 +41,26 @@
       "coordinates": {
         "x": -1179,
         "y": -655
+      }
+    },
+    {
+      "id": 4,
+      "title": "141",
+      "description": "雅致小雕像",
+      "gallery": [{ "src": "/images/141.jpg", "caption": "141" }],
+      "coordinates": {
+        "x": -1702,
+        "y": -922
+      }
+    },
+    {
+      "id": 5,
+      "title": "女巫塔",
+      "description": "",
+      "gallery": [],
+      "coordinates": {
+        "x": -4524,
+        "y": 856
       }
     }
   ]

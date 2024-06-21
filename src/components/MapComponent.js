@@ -104,15 +104,15 @@ const MapComponent = () => {
 
     const mapInstance = L.map(mapRef.current, {
       crs: customCRS,
-      minZoom: 0,
-      maxZoom: 20,
-      zoomSnap: 0.1,
-      zoomDelta: 0.1,
+      minZoom: -2,
+      maxZoom: 6,
+      zoomSnap: 0.5,
+      zoomDelta: 0.5,
       center: [0, 0],
       maxBounds: bounds,
       maxBoundsViscosity: 1.0,
       attributionControl: false,
-      scrollWheelZoom: false, // Disable scroll wheel zoom
+      // scrollWheelZoom: false, // Disable scroll wheel zoom
     });
 
     L.imageOverlay(image.src, bounds).addTo(mapInstance);
